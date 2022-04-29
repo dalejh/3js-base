@@ -1,7 +1,7 @@
 import { BoxBufferGeometry, MathUtils, MeshStandardMaterial } from "three"
-import { WorldMesh } from "./WorldObject"
+import { WorldMesh } from "./WorldMesh"
 
-function createCube() {
+function createCube(): WorldMesh {
     const radiansPerSecond = MathUtils.degToRad(30)
     // create a geometry
     const geometry = new BoxBufferGeometry(2, 2, 2)

@@ -1,8 +1,8 @@
 import { PerspectiveCamera, Scene, WebGLRenderer } from "three"
 import { createCamera } from "./components/camera"
-import { createCube } from "./components/cube"
-import { createLights } from "./components/lights"
 import { createScene } from "./components/scene"
+import { CubeScene } from "./scenes/CubeScene"
+import { Controls } from "./systems/Controls"
 import { Loop } from "./systems/Loop"
 import { createRenderer } from "./systems/renderer"
 import { Resizer } from "./systems/Resizer"
@@ -22,12 +22,15 @@ class World {
         loop = new Loop(camera, scene, renderer)
         container.append(renderer.domElement)
 
-        const cube = createCube()
-        const light = createLights()
+        // orbit controls
+        const controls = new Controls(camera, renderer.domElement)
 
-        loop.updatables.push(cube)
+        // SCENE
+        const cubeScene = new CubeScene()
+        scene.add(cubeScene.group)
 
-        scene.add(cube, light)
+        // add things to render/animate
+        loop.updatables.push(controls, ...cubeScene.updatables)
 
         const resizer = new Resizer(container, camera, renderer)
     }

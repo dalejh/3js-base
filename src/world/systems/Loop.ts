@@ -1,5 +1,5 @@
 import { Clock, PerspectiveCamera, Scene, WebGLRenderer } from "three"
-import { WorldMesh } from "../components/WorldObject"
+import { Tickable } from "../types/tickable"
 
 const clock = new Clock()
 
@@ -7,7 +7,7 @@ class Loop {
     camera: PerspectiveCamera
     scene: Scene
     renderer: WebGLRenderer
-    updatables: WorldMesh[]
+    updatables: Tickable[]
 
     constructor(
         camera: PerspectiveCamera,
