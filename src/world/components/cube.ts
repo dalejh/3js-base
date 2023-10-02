@@ -1,10 +1,10 @@
-import { BoxBufferGeometry, MathUtils, MeshStandardMaterial } from "three"
+import { BoxGeometry, MathUtils, MeshStandardMaterial } from "three"
 import { WorldMesh } from "./WorldMesh"
 
 function createCube(): WorldMesh {
     const radiansPerSecond = MathUtils.degToRad(30)
     // create a geometry
-    const geometry = new BoxBufferGeometry(2, 2, 2)
+    const geometry = new BoxGeometry()
 
     // create a default (white) Basic material
     const material = new MeshStandardMaterial({ color: "purple" })

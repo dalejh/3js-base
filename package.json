@@ -1,18 +1,25 @@
 {
+  "name": "3js-base",
+  "module": "index.ts",
+  "type": "module",
   "scripts": {
-    "build": "webpack-cli --config webpack.config.js",
-    "watch": "npx webpack watch --config webpack.config.js",
-    "prettier": "prettier --write src/"
+    "build": "esbuild ./src/main.ts --outfile=./dist/bundle.js --bundle",
+    "prettier": "prettier --write src/",
+    "compile:check": "tsc --noEmit",
+    "prettier:check": "prettier --check 'src/**/*.{ts,tsx,js,jsx,json,css}'"
   },
   "dependencies": {
-    "@types/three": "^0.139.0",
-    "prettier": "^2.6.2",
-    "three": "^0.139.2",
-    "ts-loader": "^9.2.8",
-    "typescript": "^4.6.3",
-    "webpack": "^5.72.0"
+    "@types/three": "^0.156.0",
+    "prettier": "^3.0.3",
+    "three": "^0.157.0",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
-    "webpack-cli": "^4.9.2"
+    "bun-types": "latest",
+    "esbuild": "0.19.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }

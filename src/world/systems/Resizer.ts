@@ -26,7 +26,6 @@ class Resizer {
         })
     }
 
-    // handled by caller
     onResize() {}
 }
 

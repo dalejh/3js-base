@@ -7,44 +7,43 @@ import { Loop } from "./systems/Loop"
 import { createRenderer } from "./systems/renderer"
 import { Resizer } from "./systems/Resizer"
 
-// These variables are module-scoped: we cannot access them
-// from outside the module (i.e. inaccessible from react)
-let camera: PerspectiveCamera
-let renderer: WebGLRenderer
-let scene: Scene
-let loop: Loop
-
 class World {
+    private camera: PerspectiveCamera
+    private renderer: WebGLRenderer
+    private scene: Scene
+    private loop: Loop
+    private resizer: Resizer
+
     constructor(container: HTMLElement) {
-        camera = createCamera()
-        scene = createScene()
-        renderer = createRenderer()
-        loop = new Loop(camera, scene, renderer)
-        container.append(renderer.domElement)
+        this.camera = createCamera()
+        this.scene = createScene()
+        this.renderer = createRenderer()
+        this.loop = new Loop(this.camera, this.scene, this.renderer)
+        container.append(this.renderer.domElement)
 
         // orbit controls
-        const controls = new Controls(camera, renderer.domElement)
+        const controls = new Controls(this.camera, this.renderer.domElement)
 
-        // SCENE
+        // SCENES
         const cubeScene = new CubeScene()
-        scene.add(cubeScene.group)
+        this.scene.add(cubeScene.group)
 
         // add things to render/animate
-        loop.updatables.push(controls, ...cubeScene.updatables)
+        this.loop.updatables.push(controls, ...cubeScene.updatables)
 
-        const resizer = new Resizer(container, camera, renderer)
+        this.resizer = new Resizer(container, this.camera, this.renderer)
     }
 
     render() {
-        renderer.render(scene, camera)
+        this.renderer.render(this.scene, this.camera)
     }
 
     start() {
-        loop.start()
+        this.loop.start()
     }
 
     stop() {
-        loop.stop()
+        this.loop.stop()
     }
 }
 
